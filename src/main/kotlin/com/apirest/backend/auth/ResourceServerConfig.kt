@@ -27,6 +27,8 @@ class ResourceServerConfig: ResourceServerConfigurerAdapter()
                         "/api/clients/page/**",
                         "/api/uploads/img/**",
                         "/images/**").permitAll()
+                .antMatchers("/api/clients/{id}").permitAll()
+                .antMatchers("/api/bills/**").permitAll()
 //                .antMatchers(HttpMethod.GET, "/api/clients/{id}").hasAnyRole("USER", "ADMIN")
 //                .antMatchers(HttpMethod.POST, "/api/clients/upload").hasAnyRole("USER", "ADMIN")
 //                .antMatchers(HttpMethod.POST, "/api/clients").hasRole("ADMIN")

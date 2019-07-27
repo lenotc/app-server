@@ -46,7 +46,7 @@ class ClientRestController
         return service.findAll(PageRequest.of(page, 4))
     }
 
-    @Secured("ROLE_ADMIN", "ROLE_USER")
+    // @Secured("ROLE_ADMIN", "ROLE_USER")
     @GetMapping("clients/{id}")
     fun show(@PathVariable id: Long): ResponseEntity<Any>
     {

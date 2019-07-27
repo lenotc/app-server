@@ -7,19 +7,7 @@ import org.springframework.boot.runApplication
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @SpringBootApplication
-class ApirestApplication: CommandLineRunner
-{
-    @Autowired
-    lateinit var passwordEncoder: BCryptPasswordEncoder
-
-    override fun run(vararg args: String?)
-    {
-        for (i in 1..4)
-        {
-            println(passwordEncoder.encode("12345"))
-        }
-    }
-}
+class ApirestApplication
 
 fun main(args: Array<String>)
 {

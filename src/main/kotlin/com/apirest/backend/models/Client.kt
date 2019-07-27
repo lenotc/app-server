@@ -1,9 +1,7 @@
 package com.apirest.backend.models
 
-import com.fasterxml.jackson.annotation.JsonFormat
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import org.hibernate.validator.constraints.UniqueElements
-import java.time.LocalDate
 import java.time.OffsetDateTime
 import javax.persistence.*
 import javax.validation.constraints.Email
@@ -25,7 +23,7 @@ data class Client
 
         var alias: String = "",
 
-        @field:Email(message = "Formatte of Email is incorrect")
+        @field:Email(message = "Format of Email is incorrect")
         @Column(unique=true, nullable = false)
         @get: Size(min = 1, max = 50)
         var email: String? = "",
@@ -34,8 +32,14 @@ data class Client
 
         var createAt: OffsetDateTime = OffsetDateTime.now(),
 
-//        @JsonIgnoreProperties(value = arrayOf("hibernateLazyInitializer", "handler"))
+        @JsonIgnoreProperties(value = arrayOf("hibernateLazyInitializer", "handler"))
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "region_id")
-        var region: Region = Region()
+        var region: Region = Region(),
+
+        @JsonIgnoreProperties(value = arrayOf("client", "hibernateLazyInitializer", "handler"), allowSetters = true)
+        @OneToMany(fetch = FetchType.LAZY,
+                mappedBy = "client",
+                cascade = arrayOf(CascadeType.ALL))
+        var bills: List<Bill> = emptyList()
 )
